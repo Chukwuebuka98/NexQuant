@@ -39,6 +39,17 @@ const Data = () => {
     }
   };
 
+  const resetPay = () => {
+    setNumOfDays(0);
+    setNumOfTeams(0);
+    setTotalNumOfKills(0);
+    setKillsPerDay(0);
+    setKillsPerHour(0);
+    setProductiveHours(0);
+    setHourlyRate(0);
+    setFinalPay(0);
+  };
+
   // useEffect(() => {
   //   if (numOfDays > 0 && numOfTeams > 0 && totalNumOfKills > 0) {
   //     const numberOfKillsPerDay = totalNumOfKills / numOfDays;
@@ -105,6 +116,7 @@ const Data = () => {
         </div>
 
         <button onClick={calculatePay}>CALCULATE PAY</button>
+        <button onClick={resetPay}>RESET</button>
       </div>
 
       <div>
