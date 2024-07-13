@@ -10,15 +10,13 @@ const Data = () => {
   const [killsPerHour, setKillsPerHour] = useState(0);
   const [productiveHours, setProductiveHours] = useState(0);
   const [hourlyRate, setHourlyRate] = useState("");
+  const [finalPay, setFinalPay] = useState(0);
 
   const dailyHoursExpected = 10;
 
-  console.log(payScales);
-
-  useEffect(() => {
+  const calculatePay = () => {
     if (numOfDays > 0 && numOfTeams > 0 && totalNumOfKills > 0) {
       const numberOfKillsPerDay = totalNumOfKills / numOfDays;
-      // const flooredKillsPerDay = customFloor(numberOfKillsPerDay);
       setKillsPerDay(numberOfKillsPerDay);
 
       let numberOfKillsPerHour = numberOfKillsPerDay / dailyHoursExpected;
@@ -37,9 +35,34 @@ const Data = () => {
       const rate = payScales[teamSizeKey]?.[kpdKey] || "0";
       setHourlyRate(rate);
 
-      console.log("Hourly Rate:", rate);
+      setFinalPay(totalProductiveHours * rate);
     }
-  }, [totalNumOfKills, numOfDays, numOfTeams]);
+  };
+
+  // useEffect(() => {
+  //   if (numOfDays > 0 && numOfTeams > 0 && totalNumOfKills > 0) {
+  //     const numberOfKillsPerDay = totalNumOfKills / numOfDays;
+  //     setKillsPerDay(numberOfKillsPerDay);
+
+  //     let numberOfKillsPerHour = numberOfKillsPerDay / dailyHoursExpected;
+  //     if (numberOfKillsPerHour < numOfTeams) {
+  //       numberOfKillsPerHour = numOfTeams;
+  //     }
+  //     numberOfKillsPerHour = customFloor(numberOfKillsPerHour.toFixed(2));
+  //     setKillsPerHour(numberOfKillsPerHour);
+
+  //     const totalProductiveHours = totalNumOfKills / numberOfKillsPerHour;
+  //     setProductiveHours(totalProductiveHours);
+
+  //     // Get hourly rate based on killsPerDay and team size
+  //     const teamSizeKey = `${numOfTeams}man`;
+  //     const kpdKey = `kph-${numberOfKillsPerHour}`;
+  //     const rate = payScales[teamSizeKey]?.[kpdKey] || "0";
+  //     setHourlyRate(rate);
+
+  //     setFinalPay(totalProductiveHours * rate);
+  //   }
+  // }, [totalNumOfKills, numOfDays, numOfTeams]);
 
   return (
     <>
@@ -80,6 +103,8 @@ const Data = () => {
             className="p-3"
           />
         </div>
+
+        <button onClick={calculatePay}>CALCULATE PAY</button>
       </div>
 
       <div>
@@ -87,7 +112,7 @@ const Data = () => {
         <p>KPH: {killsPerHour}</p>
         <p>Productive hours: {productiveHours.toFixed(2)}</p>
         <p>Hourly Rate: ${hourlyRate}</p>
-        <p>Pay: $ </p>
+        <p>Pay: ${finalPay.toFixed(2)} </p>
       </div>
     </>
   );
