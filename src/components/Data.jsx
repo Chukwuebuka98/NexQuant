@@ -46,7 +46,7 @@ const Data = () => {
     setKillsPerDay(0);
     setKillsPerHour(0);
     setProductiveHours(0);
-    setHourlyRate(0);
+    setHourlyRate("");
     setFinalPay(0);
   };
 
@@ -75,32 +75,48 @@ const Data = () => {
   //   }
   // }, [totalNumOfKills, numOfDays, numOfTeams]);
 
+  const days = Array.from({ length: 23 }, (_, i) => i + 1);
+  const teams = Array.from({ length: 4 }, (_, i) => i + 2);
+
   return (
     <>
       <div className="flex flex-col gap-4">
         <div>
-          <label htmlFor="numOfDays">Days: </label>
-          <input
-            type="number"
-            placeholder="Number of days"
-            id="numOfDays"
+          <label htmlFor="daySelect">Number of days:</label>
+          <select
+            id="daySelect"
             value={numOfDays}
             onChange={(e) => setNumOfDays(Number(e.target.value))}
             className="p-3"
-          />
+          >
+            <option value="" disabled>
+              Select number of days worked
+            </option>
+            {days.map((day) => (
+              <option key={day} value={day}>
+                {day}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
-          <label htmlFor="numOfTeams">Team: </label>
-          <input
-            type="number"
-            placeholder="Number of team"
+          <label htmlFor="teamSelect">Number of team:</label>
+          <select
+            id="teamSelect"
             value={numOfTeams}
-            id="numOfTeams"
             onChange={(e) => setNumOfTeams(Number(e.target.value))}
             className="p-3"
-            min="0"
-          />
+          >
+            <option value="" disabled>
+              Select number of teams
+            </option>
+            {teams.map((team) => (
+              <option key={team} value={team}>
+                {team === 1 ? "Nex Solo" : `${team} Man`}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div>
