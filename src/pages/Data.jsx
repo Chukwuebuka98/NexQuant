@@ -89,9 +89,7 @@ const Data = () => {
             onChange={(e) => setNumOfDays(Number(e.target.value))}
             className="p-3"
           >
-            <option value="" disabled>
-              Select number of days worked
-            </option>
+            <option value="NUM">Select number of days worked</option>
             {days.map((day) => (
               <option key={day} value={day}>
                 {day}
@@ -108,12 +106,11 @@ const Data = () => {
             onChange={(e) => setNumOfTeams(Number(e.target.value))}
             className="p-3"
           >
-            <option value="" disabled>
-              Select number of teams
-            </option>
+            <option value="">Select number of teams</option>
+            <option disabled>Nex Solo</option>
             {teams.map((team) => (
               <option key={team} value={team}>
-                {team === 1 ? "Nex Solo" : `${team} Man`}
+                {team} Man
               </option>
             ))}
           </select>
@@ -126,7 +123,7 @@ const Data = () => {
             placeholder="Total kills"
             id="totalNumOfKills"
             value={totalNumOfKills}
-            onChange={(e) => setTotalNumOfKills(Number(e.target.value))}
+            onChange={(e) => setTotalNumOfKills(e.target.value)}
             className="p-3"
           />
         </div>
