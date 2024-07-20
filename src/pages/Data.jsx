@@ -89,8 +89,8 @@ const Data = () => {
         </div>
         <BsCashCoin />
       </div> */}
-      <main className="max-w-[1240px] flex md:flex-row justify-between mx-auto my-10 px-10 text-[#D3D3D3] ">
-        <section className="flex flex-col gap-7 bg-[#121212] max-w-[520px] w-full rounded-lg px-10 py-14">
+      <main className="w-full max-w-[1240px] lg:flex lg:justify-between px-10  my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
+        <section className="flex flex-col gap-7 bg-[#121212] lg:max-w-[600px] w-full rounded-lg px-10 py-14">
           <div className="flex flex-col gap-1">
             <label htmlFor="daySelect">Number of days</label>
             <select
@@ -147,7 +147,7 @@ const Data = () => {
           </div>
         </section>
 
-        <section className="bg-[#121212] max-w-[600px] w-full rounded-lg p-10">
+        <section className="bg-[#121212] lg:max-w-[600px]  w-full rounded-lg p-10">
           <p>KPD: {killsPerDay.toFixed(2)}</p>
           <p>KPH: {killsPerHour}</p>
           <p>Productive hours: {productiveHours.toFixed(2)}</p>
