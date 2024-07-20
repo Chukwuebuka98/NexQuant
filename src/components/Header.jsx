@@ -16,11 +16,15 @@ const Header = () => {
   const handleNav = () => {
     setNav(!nav);
   };
+
+  const handleNavLink = () => {
+    setNav(!nav);
+  };
   return (
-    <div className="shadow-md w-full top-0 left-0 bg-[#121212]">
-      <div className="md:flex items-center justify-between  py-4 md:px-10 px-7 mx-auto max-w-[1240px] h-24">
+    <div className="shadow-md w-full top-0 left-0 bg-[#121212] text-[#D3D3D3]">
+      <div className="md:flex items-center justify-between py-4 md:px-10 px-7 mx-auto max-w-[1240px] h-24 ">
         <div>
-          <Link to="/" className="font-bold duration-300 text-3xl uppercase">
+          <Link to="/" className="font-bold duration-300 text-3xl uppercase ">
             Nex Quant
           </Link>
         </div>
@@ -33,7 +37,7 @@ const Header = () => {
         </div>
 
         <ul
-          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-[#121212] md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
+          className={`md:flex md:items-center md:pb-0 pb-12 absolute md:static bg-[#121212] md:z-auto  left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${
             nav ? "top-20 " : "top-[-490px]"
           }`}
         >
@@ -41,7 +45,8 @@ const Header = () => {
             <li key={link.name} className="md:ml-8 md:my-0 my-7">
               <NavLink
                 to={link.path}
-                className="text-white hover:text-customPurple-light duration-500 uppercase"
+                className="text-[#D3D3D3] hover:text-customPurple-light duration-500 uppercase"
+                onClick={handleNavLink}
               >
                 {link.name}
               </NavLink>

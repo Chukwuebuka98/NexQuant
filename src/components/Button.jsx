@@ -3,8 +3,9 @@ import React from "react";
 const Button = (props) => {
   return (
     <button
-      className="bg-indigo-600 text-white font-[Poppins] py-2 px-6 rounded md:ml-8 hover:bg-indigo-400 
+      className="w-full bg-customPurple-purple py-2 px-6 rounded hover:bg-customPurple-dark 
     duration-500"
+      onClick={props.onClick}
     >
       {props.children}
     </button>

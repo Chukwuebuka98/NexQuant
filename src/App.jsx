@@ -17,7 +17,7 @@ import "./App.css";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      {/* <Route index element={<Data />} /> */}
+      <Route index element={<Data />} />
       <Route path="about" element={<About />} />
       <Route path="history" element={<History />} />
       <Route path="payscale" element={<Payscale />} />
