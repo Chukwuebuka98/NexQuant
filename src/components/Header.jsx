@@ -24,7 +24,10 @@ const Header = () => {
     <div className="shadow-md w-full top-0 left-0 bg-[#121212] text-[#D3D3D3]">
       <div className="md:flex items-center justify-between py-4 md:px-10 px-7 mx-auto max-w-[1240px] h-24 ">
         <div>
-          <Link to="/" className="font-bold duration-300 text-3xl uppercase ">
+          <Link
+            to="/"
+            className="font-bold duration-300 text-3xl uppercase text-transparent bg-clip-text bg-gradient-to-l from-customPurple-purple to-customPurple-light"
+          >
             Nex Quant
           </Link>
         </div>

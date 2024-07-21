@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer utilities {
+    .border-gradient {
+      border: 8px solid; 
+      border-image-slice: 1;
+      border-image-source: linear-gradient(to right, #8223e1, #b171f2);
+      border-radius: 100%;
+      border-style: dashed;
+    }
+  }

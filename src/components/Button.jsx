@@ -6,6 +6,7 @@ const Button = (props) => {
       className="w-full bg-customPurple-purple py-2 px-6 rounded hover:bg-customPurple-dark 
     duration-500"
       onClick={props.onClick}
+      type={props.type}
     >
       {props.children}
     </button>

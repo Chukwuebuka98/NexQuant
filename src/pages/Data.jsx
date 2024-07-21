@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import customFloor from "../Functions/customFloor";
 import { payScales } from "../data/payScaleData";
 import Button from "../components/Button";
+import { GoDotFill } from "react-icons/go";
 import { BsCashCoin } from "react-icons/bs";
 
 const Data = () => {
@@ -81,6 +82,9 @@ const Data = () => {
   const days = Array.from({ length: 23 }, (_, i) => i + 1);
   const teams = Array.from({ length: 4 }, (_, i) => i + 2);
 
+  const inputStyle =
+    "p-3 bg-[#0B0B0C] rounded-md max-h-20px text-sm border border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-customPurple-purple focus:border-customPurple-purple hover:border-customPurple-purple duration-300 ";
+
   return (
     <>
       {/* <div className="w-full flex justify-between max-w-[1240px] mx-auto px-10 py-4 text-[#D3D3D3] ">
@@ -91,14 +95,19 @@ const Data = () => {
         <BsCashCoin />
       </div> */}
       <main className="w-full max-w-[1240px] lg:flex lg:justify-between px-10  my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
-        <section className="flex flex-col gap-7 bg-[#121212] lg:max-w-[600px] w-full rounded-lg px-10 py-14 mb-10 lg:mb-0">
+        <section
+          className={`flex flex-col gap-7 bg-[#121212]  w-full rounded-lg px-10 py-14 mb-10 lg:mb-0 
+    lg:max-w-[600px] ease-in-out duration-300`}
+        >
           <div className="flex flex-col gap-1">
-            <label htmlFor="daySelect">Number of days</label>
+            <label htmlFor="daySelect" className="font-medium">
+              Number of days
+            </label>
             <select
               id="daySelect"
               value={numOfDays}
               onChange={(e) => setNumOfDays(Number(e.target.value))}
-              className="p-3 bg-[#0B0B0C] rounded-md max-h-20px"
+              className={`${inputStyle}`}
             >
               <option value="NUM">Select number of days worked</option>
               {days.map((day) => (
@@ -115,7 +124,7 @@ const Data = () => {
               id="teamSelect"
               value={numOfTeams}
               onChange={(e) => setNumOfTeams(Number(e.target.value))}
-              className="p-3 bg-[#0B0B0C] rounded-md"
+              className={`${inputStyle}`}
             >
               <option value="">Select number of teams</option>
               <option disabled>Nex Solo</option>
@@ -135,7 +144,7 @@ const Data = () => {
               id="totalNumOfKills"
               value={totalNumOfKills}
               onChange={(e) => setTotalNumOfKills(e.target.value)}
-              className="p-3 bg-[#0B0B0C] rounded-md"
+              className={`${inputStyle}`}
             />
           </div>
           <div
@@ -148,12 +157,47 @@ const Data = () => {
           </div>
         </section>
 
-        <section className="bg-[#121212] lg:max-w-[600px]  w-full rounded-lg p-10">
-          <p>KPD: {killsPerDay.toFixed(2)}</p>
-          <p>KPH: {killsPerHour}</p>
-          <p>Productive hours: {productiveHours.toFixed(2)}</p>
-          <p>Hourly Rate: ${hourlyRate}</p>
-          <p>Pay: ${finalPay.toFixed(2)} </p>
+        <section className="bg-[#121212] lg:max-w-[600px]  w-full rounded-lg p-10 flex flex-col justify-evenly">
+          <div className="w-full flex flex-col justify-center items-center p-20 border-gradient mb-5">
+            {finalPay ? (
+              <p className="text-4xl font-bold ">${finalPay.toFixed(2)}</p>
+            ) : (
+              <p className="text-3xl">-</p>
+            )}
+            {finalPay != 0 && <p className="text-sm">Your final pay</p>}
+          </div>
+
+          <div>
+            <div className="flex gap-1 items-center">
+              <span className="text-red-400 text-3xl">
+                <GoDotFill height={30} width={30} />
+              </span>
+              <span className="text-sm">KPD: {killsPerDay.toFixed(2)}</span>
+            </div>
+
+            <div className="flex gap-1 items-center">
+              <span className="text-yellow-300 text-3xl">
+                <GoDotFill height={30} width={30} />
+              </span>
+              <span className="text-sm">KPH: {killsPerHour}</span>
+            </div>
+
+            <div className="flex gap-1 items-center">
+              <span className="text-purple-500 text-3xl">
+                <GoDotFill height={30} width={30} />
+              </span>
+              <span className="text-sm">
+                Productive hours: {productiveHours.toFixed(2)}
+              </span>
+            </div>
+
+            <div className="flex gap-1 items-center">
+              <span className="text-green-500 text-3xl">
+                <GoDotFill height={30} width={30} />
+              </span>
+              <span className="text-sm">Hourly Rate: ${hourlyRate}</span>
+            </div>
+          </div>
         </section>
       </main>
     </>
