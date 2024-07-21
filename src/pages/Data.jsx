@@ -32,6 +32,7 @@ const Data = () => {
       setProductiveHours(totalProductiveHours);
 
       // Get hourly rate based on killsPerDay and team size
+
       const teamSizeKey = `${numOfTeams}man`;
       const kpdKey = `kph-${numberOfKillsPerHour}`;
       const rate = payScales[teamSizeKey]?.[kpdKey] || "0";
@@ -90,7 +91,7 @@ const Data = () => {
         <BsCashCoin />
       </div> */}
       <main className="w-full max-w-[1240px] lg:flex lg:justify-between px-10  my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
-        <section className="flex flex-col gap-7 bg-[#121212] lg:max-w-[600px] w-full rounded-lg px-10 py-14">
+        <section className="flex flex-col gap-7 bg-[#121212] lg:max-w-[600px] w-full rounded-lg px-10 py-14 mb-10 lg:mb-0">
           <div className="flex flex-col gap-1">
             <label htmlFor="daySelect">Number of days</label>
             <select
