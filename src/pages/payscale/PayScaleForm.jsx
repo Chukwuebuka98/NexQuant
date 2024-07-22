@@ -363,48 +363,52 @@ const PayScaleForm = () => {
     "w-[80%] bg-black ml-5 text-sm p-3 rounded-md max-h-20px border border-gray-700 focus:outline-none focus:ring-2 focus:ring-customPurple-purple hover:border-customPurple-purple duration-300 ";
 
   const kphInputStyle =
-    "bg-black text-sm p-3 mb-3 rounded-md max-h-20px border border-gray-700 focus:outline-none focus:ring-2 focus:ring-customPurple-purple hover:border-customPurple-purple duration-300 ";
+    "bg-black text-sm p-2 mb-3 rounded-md max-h-20px border border-gray-700 focus:outline-none focus:ring-2 focus:ring-customPurple-purple hover:border-customPurple-purple duration-300 ";
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full max-w-[1240px] mx-auto p-10 text-[#D3D3D3] bg-[#121212] m-5 rounded-lg flex flex-col gap-5"
-    >
-      <div className="text-2xl font-bold w-full flex justify-center items-center">
-        <input
-          className={`${teamIdStyle}`}
-          type="text"
-          placeholder="Team ID:"
-          value={formData.teamId}
-          onChange={(e) => setFormData({ ...formData, teamId: e.target.value })}
-          required
-        />
-      </div>
+    <>
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-[1240px] mx-auto p-10 text-[#D3D3D3] bg-[#121212] m-5 rounded-lg flex flex-col gap-5"
+      >
+        <div className="text-2xl font-bold w-full flex justify-center items-center">
+          <input
+            className={`${teamIdStyle}`}
+            type="text"
+            placeholder="Team ID:"
+            value={formData.teamId}
+            onChange={(e) =>
+              setFormData({ ...formData, teamId: e.target.value })
+            }
+            required
+          />
+        </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-center">
-        {["5man", "4man", "3man", "2man"].map((category) => (
-          <div key={category} className="flex flex-col items-center">
-            <h2 className="text-2xl font-semibold p-3">{category}</h2>
-            {formData[category].map((value, index) => (
-              <div key={index}>
-                {/* <label>
+        <div className="flex flex-col md:flex-row justify-between ">
+          {["5man", "4man", "3man", "2man"].map((category) => (
+            <div key={category} className="flex flex-col items-center">
+              <h2 className="text-2xl font-semibold p-3">{category}</h2>
+              {formData[category].map((value, index) => (
+                <div key={index}>
+                  {/* <label>
                   {labelKeys[category][index]}: */}
-                <input
-                  type="number"
-                  value={value}
-                  onChange={(e) => handleInputChange(e, category, index)}
-                  className={`${kphInputStyle}`}
-                  placeholder={`${labelKeys[category][index]}`}
-                />
-                {/* </label> */}
-              </div>
-            ))}
-          </div>
-        ))}
-      </div>
+                  <input
+                    type="number"
+                    value={value}
+                    onChange={(e) => handleInputChange(e, category, index)}
+                    className={`${kphInputStyle}`}
+                    placeholder={`${labelKeys[category][index]}`}
+                  />
+                  {/* </label> */}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
 
-      <Button type="submit">Submit payscale to the database</Button>
-    </form>
+        <Button type="submit">Submit payscale to the database</Button>
+      </form>
+    </>
   );
 };
 
