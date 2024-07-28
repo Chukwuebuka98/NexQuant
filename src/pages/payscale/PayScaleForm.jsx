@@ -1,6 +1,6 @@
 // import React, { useState } from "react";
-// // import { getDatabase, ref, set } from 'firebase/database';
-// // import { database } from './firebase';
+// import { getDatabase, ref, set } from 'firebase/database';
+// import { database } from './firebase';
 
 // const PayScaleForm = () => {
 //   const [formData, setFormData] = useState({
@@ -167,6 +167,8 @@
 
 import React, { useState } from "react";
 import Button from "../../components/Button";
+import { app, database } from "../../firebaseConfig";
+import { collection, addDoc } from "firebase/firestore";
 
 const PayScaleForm = () => {
   const [formData, setFormData] = useState({
@@ -176,6 +178,8 @@ const PayScaleForm = () => {
     "3man": Array(15).fill(""),
     "2man": Array(12).fill(""),
   });
+
+  const collectionRef = collection(database, "payscales");
 
   const handleInputChange = (e, category, index) => {
     const newCategoryData = [...formData[category]];
@@ -277,7 +281,15 @@ const PayScaleForm = () => {
 
     const completeData = { [`team${formData.teamId}`]: dataToSave };
 
-    console.log("Data to save:", completeData);
+    addDoc(collectionRef, completeData)
+      .then(() => {
+        alert("Data added successfully");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+
+    // console.log("Data to save:", completeData);
   };
 
   const labelKeys = {

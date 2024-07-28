@@ -160,7 +160,9 @@ const Data = () => {
         <section className="bg-[#121212] lg:max-w-[600px]  w-full rounded-lg p-10 flex flex-col justify-evenly">
           <div className="w-full flex flex-col justify-center items-center p-20 border-gradient mb-5">
             {finalPay ? (
-              <p className="text-4xl font-bold ">${finalPay.toFixed(2)}</p>
+              <p className="text-2xl md:text-4xl font-bold ">
+                ${finalPay.toFixed(2)}
+              </p>
             ) : (
               <p className="text-3xl">-</p>
             )}
