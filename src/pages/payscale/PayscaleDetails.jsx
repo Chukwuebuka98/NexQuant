@@ -37,7 +37,7 @@ const PayscaleDetails = () => {
                 <h4 className="text-lg font-semibold">{category}</h4>
                 <ul className="list-disc ml-5">
                   {Object.keys(payscale[category]).map((kph) => (
-                    <li key={kph}>{`${kph}: ${payscale[category][kph]}`}</li>
+                    <li key={kph}>{`${kph}: $${payscale[category][kph]}`}</li>
                   ))}
                 </ul>
               </div>
