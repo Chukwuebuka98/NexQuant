@@ -13,6 +13,7 @@ import {
   Route,
 } from "react-router-dom";
 import "./App.css";
+import PayscaleDetails from "./pages/payscale/PayscaleDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="history" element={<History />} />
       <Route path="payscale" element={<Payscale />} />
       <Route path="admin" element={<Admin />} />
+      <Route path="admin/:id" element={<PayscaleDetails />} />
       <Route path="profile" element={<Profile />} />
     </Route>
   )

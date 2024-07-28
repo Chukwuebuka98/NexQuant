@@ -165,14 +165,21 @@
 
 // export default PayScaleForm;
 
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "../../components/Button";
 import { app, database } from "../../firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
 const PayScaleForm = () => {
   const [formData, setFormData] = useState({
-    teamId: "",
+    // teamId: "",
     "5man": Array(23).fill(""),
     "4man": Array(16).fill(""),
     "3man": Array(15).fill(""),
@@ -279,9 +286,9 @@ const PayScaleForm = () => {
       ]),
     };
 
-    const completeData = { [`team${formData.teamId}`]: dataToSave };
+    // const completeData = { [`team${formData.teamId}`]: dataToSave };
 
-    addDoc(collectionRef, completeData)
+    addDoc(collectionRef, dataToSave)
       .then(() => {
         alert("Data added successfully");
       })
@@ -290,6 +297,35 @@ const PayScaleForm = () => {
       });
 
     // console.log("Data to save:", completeData);
+  };
+
+  const getData = () => {
+    getDocs(collectionRef).then((response) => {
+      console.log(
+        response.docs.map((item) => {
+          return { ...item.data(), id: item.id };
+        })
+      );
+    });
+  };
+
+  const updateData = () => {
+    const docToUpdate = doc(database, "payscales", "iNk2JbPDuK0LY3CX8kHd");
+    updateDoc(docToUpdate, {
+      email: "222",
+      password: 23456,
+    });
+  };
+
+  const deleteData = () => {
+    const docToDelete = doc(database, "payscales", "iNk2JbPDuK0LY3CX8kHd");
+    deleteDoc(docToDelete)
+      .then(() => {
+        alert("Data delected");
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
 
   const labelKeys = {
@@ -371,8 +407,8 @@ const PayScaleForm = () => {
     ],
   };
 
-  const teamIdStyle =
-    "w-[80%] bg-black ml-5 text-sm p-3 rounded-md max-h-20px border border-gray-700 focus:outline-none focus:ring-2 focus:ring-customPurple-purple hover:border-customPurple-purple duration-300 ";
+  // const teamIdStyle =
+  //   "w-[80%] bg-black ml-5 text-sm p-3 rounded-md max-h-20px border border-gray-700 focus:outline-none focus:ring-2 focus:ring-customPurple-purple hover:border-customPurple-purple duration-300 ";
 
   const kphInputStyle =
     "bg-black text-sm p-2 mb-3 rounded-md max-h-20px border border-gray-700 focus:outline-none focus:ring-2 focus:ring-customPurple-purple hover:border-customPurple-purple duration-300 ";
@@ -383,7 +419,7 @@ const PayScaleForm = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-[1240px] mx-auto p-10 text-[#D3D3D3] bg-[#121212] m-5 rounded-lg flex flex-col gap-5"
       >
-        <div className="text-2xl font-bold w-full flex justify-center items-center">
+        {/* <div className="text-2xl font-bold w-full flex justify-center items-center">
           <input
             className={`${teamIdStyle}`}
             type="text"
@@ -394,7 +430,7 @@ const PayScaleForm = () => {
             }
             required
           />
-        </div>
+        </div> */}
 
         <div className="flex flex-col md:flex-row justify-between ">
           {["5man", "4man", "3man", "2man"].map((category) => (
@@ -418,7 +454,8 @@ const PayScaleForm = () => {
           ))}
         </div>
 
-        <Button type="submit">Submit payscale to the database</Button>
+        {/* <Button type="submit">Submit payscale to the database</Button> */}
+        <Button onClick={updateData}>Get data</Button>
       </form>
     </>
   );

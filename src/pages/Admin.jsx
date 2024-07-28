@@ -1,10 +1,15 @@
-import React from "react";
 import PayScaleForm from "./payscale/PayScaleForm";
+import { Link } from "react-router-dom";
 
 const Admin = () => {
   return (
     <div>
-      {/* <h1>This route is specifically for admins</h1> */}
+      <Link
+        to=":payscale"
+        className="w-full max-w-[1240px] flex justify-center my-4 mx-auto hover:text-customPurple-light duration-300 hover:underline"
+      >
+        View payscales added to the database
+      </Link>
       <PayScaleForm />
     </div>
   );
