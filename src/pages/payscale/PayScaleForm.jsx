@@ -183,7 +183,7 @@ const PayScaleForm = () => {
     "5man": Array(23).fill(""),
     "4man": Array(16).fill(""),
     "3man": Array(15).fill(""),
-    "2man": Array(12).fill(""),
+    "2man": Array(13).fill(""),
   });
 
   const collectionRef = collection(database, "payscales");
@@ -454,8 +454,8 @@ const PayScaleForm = () => {
           ))}
         </div>
 
-        {/* <Button type="submit">Submit payscale to the database</Button> */}
-        <Button onClick={updateData}>Get data</Button>
+        <Button type="submit">Submit payscale to the database</Button>
+        {/* <Button onClick={updateData}>Get data</Button> */}
       </form>
     </>
   );

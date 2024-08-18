@@ -94,6 +94,7 @@ const Data = () => {
         </div>
         <BsCashCoin />
       </div> */}
+
       <main className="w-full max-w-[1240px] lg:flex lg:justify-between px-10  my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
         <section
           className={`flex flex-col gap-7 bg-[#121212]  w-full rounded-lg px-10 py-14 mb-10 lg:mb-0 
