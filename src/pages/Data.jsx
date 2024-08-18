@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import customFloor from "../Functions/customFloor";
-import { payScales } from "../data/payScaleData";
+// import { payScales } from "../data/payScaleData";
 import Button from "../components/Button";
 import { GoDotFill } from "react-icons/go";
 // import { BsCashCoin } from "react-icons/bs";
 
 const Data = () => {
+  const [payScales, setPayScales] = useState(null);
   const [numOfDays, setNumOfDays] = useState(0);
   const [numOfTeams, setNumOfTeams] = useState(0);
   const [totalNumOfKills, setTotalNumOfKills] = useState(0);
@@ -16,6 +17,14 @@ const Data = () => {
   const [finalPay, setFinalPay] = useState(0);
 
   const dailyHoursExpected = 10;
+
+  useEffect(() => {
+    // Retrieve the pay scale from sessionStorage on component mount
+    const storedPayScale = sessionStorage.getItem("payscales");
+    if (storedPayScale) {
+      setPayScales(JSON.parse(storedPayScale));
+    }
+  }, []);
 
   const calculatePay = () => {
     if (numOfDays > 0 && numOfTeams > 0 && totalNumOfKills > 0) {
@@ -35,11 +44,11 @@ const Data = () => {
       // Get hourly rate based on killsPerDay and team size
 
       const teamSizeKey = `${numOfTeams}man`;
-      const kpdKey = `kph-${numberOfKillsPerHour}`;
-      const rate = payScales[teamSizeKey]?.[kpdKey] || "0";
+      const kphKey = `kph-${numberOfKillsPerHour}`;
+      const rate = payScales[teamSizeKey]?.[kphKey] || "0";
       setHourlyRate(rate);
 
-      setFinalPay(totalProductiveHours * rate);
+      setFinalPay(totalProductiveHours * parseFloat(rate));
     }
   };
 

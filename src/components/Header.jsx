@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { FiLogOut } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [nav, setNav] = useState(false);
+  const navigate = useNavigate();
 
   const links = [
     { name: "Home", path: "/" },
     { name: "Payscale", path: "/payscale" },
-    { name: "History", path: "/history" },
     { name: "About", path: "/about" },
   ];
 
@@ -18,6 +20,14 @@ const Header = () => {
 
   const handleNavLink = () => {
     setNav(!nav);
+  };
+
+  const handleLogout = () => {
+    // Clear session storage
+    sessionStorage.removeItem("payscales");
+
+    // Redirect to the login page
+    navigate("/login");
   };
   return (
     <div className="shadow-md w-full top-0 left-0 bg-[#121212] text-[#D3D3D3]">
@@ -54,6 +64,12 @@ const Header = () => {
               </NavLink>
             </li>
           ))}
+          <button
+            className="text-red-700 text-2xl ml-20"
+            onClick={handleLogout}
+          >
+            <FiLogOut />
+          </button>
         </ul>
       </div>
     </div>
