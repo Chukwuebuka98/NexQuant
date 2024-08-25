@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import customFloor from "../Functions/customFloor";
-// import { payScales } from "../data/payScaleData";
 import Button from "../components/Button";
 import { GoDotFill } from "react-icons/go";
-// import { BsCashCoin } from "react-icons/bs";
 
 const Data = () => {
   const [payScales, setPayScales] = useState(null);

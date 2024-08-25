@@ -25,7 +25,7 @@ const Login = () => {
         sessionStorage.setItem("payscales", JSON.stringify(payScale));
         navigate("/"); // Redirect to home route
       } else {
-        setError("Invalid ID. Pay scale not found.");
+        setError("Invalid ID. User not found.");
       }
     } catch (err) {
       console.error("Error fetching pay scale:", err);

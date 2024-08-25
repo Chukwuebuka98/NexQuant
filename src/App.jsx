@@ -2,7 +2,7 @@ import Data from "./pages/Data";
 import Layout from "./components/Layout";
 import Admin from "./pages/Admin";
 import About from "./pages/About";
-import Payscale from "./pages/Payscale";
+
 import Login from "./pages/auth/Login";
 import Logout from "./pages/auth/Logout";
 import UserProtectedRoute from "./pages/auth/UserProtectedRoute";
@@ -31,7 +31,6 @@ const router = createBrowserRouter(
       >
         <Route index element={<Data />} />
         <Route path="about" element={<About />} />
-        <Route path="payscale" element={<Payscale />} />
       </Route>
 
       <Route

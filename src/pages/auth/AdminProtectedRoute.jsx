@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import "ldrs/spiral";
 
 const AdminProtectedRoute = ({ children }) => {
   const [loading, setLoading] = useState(true);
@@ -21,7 +22,11 @@ const AdminProtectedRoute = ({ children }) => {
   }, [auth, navigate]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="py-5 h-screen flex flex-col justify-center items-center">
+        <l-spiral size="50" speed="0.7" color="#b171f2"></l-spiral>
+      </div>
+    );
   }
 
   return isAuthenticated ? children : null;
