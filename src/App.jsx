@@ -6,6 +6,8 @@ import Payscale from "./pages/Payscale";
 import Login from "./pages/auth/Login";
 import Logout from "./pages/auth/Logout";
 import UserProtectedRoute from "./pages/auth/UserProtectedRoute";
+import AdminProtectedRoute from "./pages/auth/AdminProtectedRoute";
+import AdminLogin from "./pages/auth/AdminLogin";
 
 import {
   RouterProvider,
@@ -32,13 +34,23 @@ const router = createBrowserRouter(
         <Route path="payscale" element={<Payscale />} />
       </Route>
 
-      <Route path="/" element={<Layout />}>
+      <Route
+        path="/"
+        element={
+          <AdminProtectedRoute>
+            <Layout />
+          </AdminProtectedRoute>
+        }
+      >
         <Route path="admin" element={<Admin />} />
         <Route path="admin/:id" element={<PayscaleDetails />} />
       </Route>
 
-      <Route path="/login" element={<Login />} />
-      <Route path="/logout" elemment={<Logout />} />
+      <Route path="/" element={<Layout />}>
+        <Route path="adminlogin" element={<AdminLogin />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/logout" elemment={<Logout />} />
+      </Route>
     </>
   )
 );
