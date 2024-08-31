@@ -23,7 +23,7 @@ const Admin = () => {
 
   return (
     <div>
-      <div className="w-full max-w-[1240px] flex justify-between my-4 mx-auto ">
+      <div className="w-full max-w-[1240px] flex justify-between my-4 mx-auto px-10">
         <Link
           to=":payscale"
           className="hover:text-customPurple-light duration-300 hover:underline"

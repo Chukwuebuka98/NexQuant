@@ -29,7 +29,7 @@ const Login = () => {
       }
     } catch (err) {
       console.error("Error fetching pay scale:", err);
-      setError("Error logging in. Please try again.");
+      setError(`Error logging in. Please try again. ${err}`);
     } finally {
       setSubmitting(false); // Reset Formik's submitting state
     }
