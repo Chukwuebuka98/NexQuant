@@ -19,33 +19,17 @@ const PayScaleForm = () => {
 
   const validationSchema = Yup.object().shape({
     "5man": Yup.array()
-      .of(
-        Yup.number()
-          .required("This field is required")
-          .typeError("Must be a number")
-      )
-      .required("This field is required"),
+      .of(Yup.number().required("Required").typeError("Must be a number"))
+      .required("Required"),
     "4man": Yup.array()
-      .of(
-        Yup.number()
-          .required("This field is required")
-          .typeError("Must be a number")
-      )
-      .required("This field is required"),
+      .of(Yup.number().required("Required").typeError("Must be a number"))
+      .required("Required"),
     "3man": Yup.array()
-      .of(
-        Yup.number()
-          .required("This field is required")
-          .typeError("Must be a number")
-      )
-      .required("This field is required"),
+      .of(Yup.number().required("Required").typeError("Must be a number"))
+      .required("Required"),
     "2man": Yup.array()
-      .of(
-        Yup.number()
-          .required("This field is required")
-          .typeError("Must be a number")
-      )
-      .required("This field is required"),
+      .of(Yup.number().required("Required").typeError("Must be a number"))
+      .required("Required"),
   });
 
   const buildKphValues = (values, keys) => {
