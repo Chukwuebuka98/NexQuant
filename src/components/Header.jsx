@@ -7,10 +7,7 @@ const Header = () => {
   const [showLogout, setShowLogout] = useState(false);
   const navigate = useNavigate();
 
-  const links = [
-    { name: "Calculator", path: "/" },
-    { name: "About", path: "/about" },
-  ];
+  const links = [{ name: "Calculator", path: "/" }];
 
   const handleNav = () => {
     setNav(!nav);
@@ -41,7 +38,7 @@ const Header = () => {
         <div>
           <Link
             to="/"
-            className="font-bold duration-300 text-3xl uppercase text-transparent bg-clip-text bg-gradient-to-l from-customPurple-purple to-customPurple-light"
+            className="font-bold duration-300 text-2xl md:text-3xl uppercase text-transparent bg-clip-text bg-gradient-to-l from-customPurple-purple to-customPurple-light"
           >
             Nex Quant
           </Link>

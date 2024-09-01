@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import customFloor from "../Functions/customFloor";
 import Button from "../components/Button";
 import { GoDotFill } from "react-icons/go";
@@ -13,6 +13,9 @@ const Data = () => {
   const [productiveHours, setProductiveHours] = useState(0);
   const [hourlyRate, setHourlyRate] = useState("");
   const [finalPay, setFinalPay] = useState(0);
+
+  // Create a ref for the final pay section
+  const finalPayRef = useRef(null);
 
   const dailyHoursExpected = 10;
 
@@ -47,6 +50,11 @@ const Data = () => {
       setHourlyRate(rate);
 
       setFinalPay(totalProductiveHours * parseFloat(rate));
+
+      // Scroll to the final pay section after calculating the pay
+      if (finalPayRef.current) {
+        finalPayRef.current.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -61,48 +69,15 @@ const Data = () => {
     setFinalPay(0);
   };
 
-  // useEffect(() => {
-  //   if (numOfDays > 0 && numOfTeams > 0 && totalNumOfKills > 0) {
-  //     const numberOfKillsPerDay = totalNumOfKills / numOfDays;
-  //     setKillsPerDay(numberOfKillsPerDay);
-
-  //     let numberOfKillsPerHour = numberOfKillsPerDay / dailyHoursExpected;
-  //     if (numberOfKillsPerHour < numOfTeams) {
-  //       numberOfKillsPerHour = numOfTeams;
-  //     }
-  //     numberOfKillsPerHour = customFloor(numberOfKillsPerHour.toFixed(2));
-  //     setKillsPerHour(numberOfKillsPerHour);
-
-  //     const totalProductiveHours = totalNumOfKills / numberOfKillsPerHour;
-  //     setProductiveHours(totalProductiveHours);
-
-  //     // Get hourly rate based on killsPerDay and team size
-  //     const teamSizeKey = `${numOfTeams}man`;
-  //     const kpdKey = `kph-${numberOfKillsPerHour}`;
-  //     const rate = payScales[teamSizeKey]?.[kpdKey] || "0";
-  //     setHourlyRate(rate);
-
-  //     setFinalPay(totalProductiveHours * rate);
-  //   }
-  // }, [totalNumOfKills, numOfDays, numOfTeams]);
-
   const days = Array.from({ length: 23 }, (_, i) => i + 1);
   const teams = Array.from({ length: 4 }, (_, i) => i + 2);
 
   const inputStyle =
-    "p-3 bg-[#0B0B0C] rounded-md max-h-20px text-sm border border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-customPurple-purple focus:border-customPurple-purple hover:border-customPurple-purple duration-300 ";
+    "p-3 bg-[#0B0B0C] rounded-md max-h-20px text-xs md:text-sm border border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-customPurple-purple focus:border-customPurple-purple hover:border-customPurple-purple duration-300 ";
 
   return (
     <>
-      {/* <div className="w-full flex justify-between max-w-[1240px] mx-auto px-10 py-4 text-[#D3D3D3] ">
-        <div className="flex flex-col gap-2">
-          <h4>Payroll Calculator</h4>
-          <h1 className="text-2xl md:text-5xl">Welocome to NexQuant</h1>
-        </div>
-        <BsCashCoin />
-      </div> */}
-
-      <main className="w-full max-w-[1240px] lg:flex lg:justify-between px-10  my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
+      <main className="w-full max-w-[1240px] lg:flex lg:justify-between px-10 my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
         <section
           className={`flex flex-col gap-7 bg-[#121212]  w-full rounded-lg px-10 py-14 mb-10 lg:mb-0 
     lg:max-w-[600px] ease-in-out duration-300`}
@@ -157,24 +132,31 @@ const Data = () => {
           </div>
           <div
             className={`${
-              finalPay != 0 ? "w-full flex" : "flex flex-col"
+              finalPay != 0
+                ? "w-full flex-col md:flex md:flex-row"
+                : "flex flex-col"
             }  mt-5 gap-5`}
           >
-            <Button onClick={calculatePay}>CALCULATE PAY</Button>
-            {finalPay != 0 && <Button onClick={resetPay}>RESET</Button>}
+            <div className="w-full">
+              <Button onClick={calculatePay}>CALCULATE PAY</Button>
+            </div>
+            <div className="mt-4 md:mt-0 w-full">
+              {finalPay != 0 && <Button onClick={resetPay}>RESET</Button>}
+            </div>
           </div>
         </section>
 
-        <section className="bg-[#121212] lg:max-w-[600px]  w-full rounded-lg p-10 flex flex-col justify-evenly">
+        <section
+          ref={finalPayRef} // Attach the ref to the final pay section
+          className="bg-[#121212] lg:max-w-[600px]  w-full rounded-lg p-10 flex flex-col justify-evenly"
+        >
           <div className="w-full flex flex-col justify-center items-center p-20 border-gradient mb-5">
             {finalPay ? (
-              <p className="text-2xl md:text-4xl font-bold ">
-                ${finalPay.toFixed(2)}
-              </p>
+              <p className="text-4xl font-bold ">${finalPay.toFixed(2)}</p>
             ) : (
-              <p className="text-3xl">-</p>
+              <p className="text-3xl">- -</p>
             )}
-            {finalPay != 0 && <p className="text-sm">Your final pay</p>}
+            {finalPay != 0 && <p className="hidden md:block">Your final pay</p>}
           </div>
 
           <div>

@@ -28,7 +28,7 @@ const Admin = () => {
           to=":payscale"
           className="hover:text-customPurple-light duration-300 hover:underline"
         >
-          View payscales added to the database
+          Payscales{" "}
         </Link>
         <button
           onClick={handleLogout}
