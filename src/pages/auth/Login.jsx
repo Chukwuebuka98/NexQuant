@@ -37,7 +37,7 @@ const Login = () => {
 
   return (
     <div className="w-full max-w-[1240px] m-auto h-screen flex justify-center items-center bg-customBlack-dark my-10">
-      <div className="w-[400px] h-[400px] flex flex-col items-center justify-center">
+      <div className="max-w-[400px] h-[400px] w-full flex flex-col items-center justify-center p-5 md:p-0">
         <Formik
           initialValues={{ userID: "" }}
           validationSchema={validationSchema}

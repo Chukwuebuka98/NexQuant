@@ -34,7 +34,7 @@ const Header = () => {
 
   return (
     <div className="shadow-md w-full top-0 left-0 bg-[#121212] text-[#D3D3D3]">
-      <div className="md:flex items-center justify-between py-4 md:px-10 px-7 mx-auto max-w-[1240px] h-24">
+      <div className="md:flex items-center justify-between py-10 md:py-4 md:px-10 px-7 mx-auto max-w-[1240px] h-24">
         <div>
           <Link
             to="/"
@@ -46,7 +46,7 @@ const Header = () => {
 
         <div
           onClick={handleNav}
-          className="absolute right-8 top-6 md:hidden duration-300"
+          className="absolute right-8 top-6 md:hidden duration-300 py-5"
         >
           {!nav ? <AiOutlineMenu size={20} /> : <AiOutlineClose size={20} />}
         </div>
@@ -60,7 +60,11 @@ const Header = () => {
             <li key={link.name} className="md:ml-8 md:my-0 my-7">
               <NavLink
                 to={link.path}
-                className="text-[#D3D3D3] hover:text-customPurple-light duration-500 uppercase"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-customPurple-light uppercase"
+                    : `text-[#D3D3D3] hover:text-customPurple-light duration-500 uppercase`
+                }
                 onClick={handleNavLink}
               >
                 {link.name}

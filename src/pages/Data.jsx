@@ -77,7 +77,7 @@ const Data = () => {
 
   return (
     <>
-      <main className="w-full max-w-[1240px] lg:flex lg:justify-between px-10 my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
+      <main className="w-full max-w-[1240px] lg:flex lg:justify-between  px-5 md:px-10 my-10 text-[#D3D3D3] mx-auto md:gap-5 lg:gap-10">
         <section
           className={`flex flex-col gap-7 bg-[#121212]  w-full rounded-lg px-10 py-14 mb-10 lg:mb-0 
     lg:max-w-[600px] ease-in-out duration-300`}
@@ -156,7 +156,7 @@ const Data = () => {
             ) : (
               <p className="text-3xl">- -</p>
             )}
-            {finalPay != 0 && <p className="hidden md:block">Your final pay</p>}
+            {finalPay != 0 && <p className="text-xs md:text-sm">Final pay</p>}
           </div>
 
           <div>
@@ -164,21 +164,23 @@ const Data = () => {
               <span className="text-red-400 text-3xl">
                 <GoDotFill height={30} width={30} />
               </span>
-              <span className="text-sm">KPD: {killsPerDay.toFixed(2)}</span>
+              <span className="text-xs md:text-sm">
+                KPD: {killsPerDay.toFixed(2)}
+              </span>
             </div>
 
             <div className="flex gap-1 items-center">
               <span className="text-yellow-300 text-3xl">
                 <GoDotFill height={30} width={30} />
               </span>
-              <span className="text-sm">KPH: {killsPerHour}</span>
+              <span className="text-xs md:text-sm">KPH: {killsPerHour}</span>
             </div>
 
             <div className="flex gap-1 items-center">
               <span className="text-purple-500 text-3xl">
                 <GoDotFill height={30} width={30} />
               </span>
-              <span className="text-sm">
+              <span className="text-xs md:text-sm">
                 Productive hours: {productiveHours.toFixed(2)}
               </span>
             </div>
@@ -187,7 +189,9 @@ const Data = () => {
               <span className="text-green-500 text-3xl">
                 <GoDotFill height={30} width={30} />
               </span>
-              <span className="text-sm">Hourly Rate: ${hourlyRate}</span>
+              <span className="text-xs md:text-sm">
+                Hourly Rate: ${hourlyRate}
+              </span>
             </div>
           </div>
         </section>

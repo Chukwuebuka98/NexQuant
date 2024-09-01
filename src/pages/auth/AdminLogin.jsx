@@ -33,7 +33,7 @@ const AdminLogin = () => {
 
   return (
     <div className="w-full max-w-[1240px] mx-auto flex items-center justify-center h-full my-10 bg-customBlack-dark">
-      <div className="w-[400px] h-[400px] flex flex-col items-center justify-center">
+      <div className="w-[400px] h-[400px] flex flex-col items-center justify-center p-5 md:p-0">
         <Formik
           initialValues={{ email: "", password: "" }}
           validationSchema={validationSchema}
