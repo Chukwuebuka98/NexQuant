@@ -1,7 +1,7 @@
 import Data from "./pages/Data";
 import Layout from "./components/Layout";
 import Admin from "./pages/Admin";
-import About from "./pages/About";
+import NotFound from "./pages/NotFound";
 
 import Login from "./pages/auth/Login";
 import Logout from "./pages/auth/Logout";
@@ -30,7 +30,6 @@ const router = createBrowserRouter(
         }
       >
         <Route index element={<Data />} />
-        <Route path="about" element={<About />} />
       </Route>
 
       <Route
@@ -50,6 +49,7 @@ const router = createBrowserRouter(
         <Route path="/login" element={<Login />} />
         <Route path="/logout" elemment={<Logout />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </>
   )
 );
